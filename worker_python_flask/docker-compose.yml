@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: api-orders-python
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=orders_db
+    ports:
+      - "5002:5002"
+    networks:
+      - orders-network
+
+  db:
+    image: postgres:16
+    container_name: db-orders-python
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=orders_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - dbdata-python:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - orders-network
+
+volumes:
+  dbdata-python:
+
+networks:
+  orders-network:
+    driver: bridge
+

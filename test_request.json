@@ -1,0 +1,8 @@
+{
+  "customerId": "C123",
+  "items": [
+    { "productId": "P1", "quantity": 2, "price": 10.5 },
+    { "productId": "P2", "quantity": 1, "price": 5.0 }
+  ]
+}
+

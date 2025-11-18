@@ -1,0 +1,47 @@
+Para ejecutar las pruebas en otra máquina se neesita:
+
+### 1. Docker y Docker Compose
+- **Docker Desktop** (Windows/Mac) o **Docker Engine** (Linux)
+- **Docker Compose** (viene incluido con Docker Desktop)
+
+Verificar instalación:
+```bash
+docker --version
+docker compose version
+```
+
+### 3. Git para clone el repo
+```bash
+git clone [URL_DEL_REPO]
+cd Taller-Benchmarking-NDJPPR
+```
+
+## Pasos para Ejecutar el project
+
+### 1. Clonar el Repositorio
+```bash
+git clone [URL_DEL_REPO]
+cd Taller-Benchmarking-NDJPPR
+```
+
+### 2. Verificar que Todo Esté Correcto
+```bash
+# Windows PowerShell
+.\verificar_proyecto.ps1
+
+# Linux/Mac
+chmod +x verificar_proyecto.sh
+./verificar_proyecto.sh
+```
+
+### 3. Probar un Worker
+```bash
+# WindowsPowerShell
+.\test_single_worker.ps1 -Worker python
+
+# Linux/Mac
+chmod +x test_single_worker.sh
+./test_single_worker.sh python
+```
+
+

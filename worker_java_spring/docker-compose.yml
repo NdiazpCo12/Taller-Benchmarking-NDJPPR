@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: api-orders-java
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=orders_db
+    ports:
+      - "5001:5001"
+    networks:
+      - orders-network
+
+  db:
+    image: postgres:16
+    container_name: db-orders-java
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=orders_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - dbdata-java:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - orders-network
+
+volumes:
+  dbdata-java:
+
+networks:
+  orders-network:
+    driver: bridge
+
